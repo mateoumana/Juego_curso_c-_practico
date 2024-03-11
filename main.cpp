@@ -2,31 +2,63 @@
 //size of the labyrinth 10*10=100
 #define SIZE_LAB 100
 using namespace std;
+static bool isGameOver = false;
 
-void printMap(int *heroPos, int *lifes, char *mapWorld){
-    for(int i = 0 ;i < SIZE_LAB;i++){
-        if(((i + 1) % 10) == 0){
-            cout << *(mapWorld + i) << endl;
-        }else{
-            cout << *(mapWorld + i);
-        }
+bool CheckGameOver(int *heroPos){
+    if((*(heroPos) >= 10) || (*(heroPos) < 0) || (*(heroPos + 1) >= 10) || (*(heroPos + 1) < 0)){
+        cout << "\n\n===================" <<endl;
+        cout << "<<<  GAME OVER  >>>" << endl;
+        cout << "===================" << endl << endl;
+        return true;
+    }else{
+        return false;
     }
 }
 
-void movement(char *mov){
+void printMap(int *heroPos, int *lifes, char *mapWorld){
+    int y = 0;
+    int i = 0;
+    for(int x = 0 ;x < SIZE_LAB;x++){
+        //cout << "/" << (y == *(heroPos + 1)) << (i == *heroPos) << "/ ";
+        //cout << "/" << i << *heroPos << "/ " << endl;
+        if((y == *(heroPos + 1)) && (i == *heroPos)){
+            if(((x + 1) % 10) == 0){
+                cout << "H" << endl;
+            }else{
+                cout << "H";
+            }
+        }else{
+            if(((x + 1) % 10) == 0){
+                i = -1;
+                cout << *(mapWorld + x) << endl;
+                y += 1;
+            }else{
+                cout << *(mapWorld + x);
+            }
+        }
+        i += 1;  
+    }    
+    isGameOver = CheckGameOver(heroPos);
+}
+
+void movement(char *mov,int *heroPos, int *lifes, char *mapWorld){
     switch (*mov)
     {
-    case 'd':
-        /* code */
+    case 'd': //down
+        *(heroPos + 1) += 1;   //up is down in the array
+        printMap(heroPos, lifes, mapWorld);
         break;
-    case 'r':
-        /* code */
+    case 'r': //right
+        *heroPos += 1;
+        printMap(heroPos, lifes, mapWorld);
         break;
-    case 'l':
-        /* code */
+    case 'l': //left
+        *heroPos -= 1;
+        printMap(heroPos, lifes, mapWorld);
         break;
-    case 'u':
-        /* code */
+    case 'u': //up
+        *(heroPos + 1) -= 1; //down is up in the array
+        printMap(heroPos, lifes, mapWorld);
         break;
     default:
         break;
@@ -35,8 +67,7 @@ void movement(char *mov){
 
 int main(){
     char mov = ' ';
-    bool isGameOver = false;
-    int heroPos = 1;
+    int heroPos[2] = {0,0};  //pos x,y
     int lifes = 3;
     char mapWorld[SIZE_LAB] = {'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I',
@@ -48,13 +79,14 @@ int main(){
                         'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I'};
+
     cout << "Labyrinth Practical course of C++" << endl;
     cout << "posible movements; r (right), l (left), u (up), d (down)" << endl;
+    printMap(heroPos, &lifes, mapWorld);
     while(isGameOver == false){
-        cout << "Movimiento: " << endl;
+        cout << "\n>>>Which movement do you wish to do?: " << endl;
         cin >> mov;
-        printMap(&heroPos, &lifes, mapWorld);
-        //movement(&mov);
+        movement(&mov,heroPos, &lifes, mapWorld);
     }
     return 0;
 }
