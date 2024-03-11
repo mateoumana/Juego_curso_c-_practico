@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 //size of the labyrinth 10*10=100
 #define SIZE_LAB 100
 using namespace std;
@@ -65,10 +67,38 @@ void movement(char *mov,int *heroPos, int *lifes, char *mapWorld){
     }
 }
 
+void loginPlayer(){  //third line to the score
+    string namePlayer, Email;
+    cout << "Introduce your Nick Name: ";
+    cin << namePlayer;
+    cout << "\nIntroduce your Email: ";
+    ofstream File(namePlayer + ".txt");
+    if(File.is_open()){
+        File << namePlayer << endl;
+        File << Email << endl;
+    }
+    File.close();
+}
+
+void selectPlayer(){
+    string namePlayer;
+    string line;
+    cout << "Introduce your Nick Name: ";
+    cin << namePlayer;
+    ifstream File(namePlayer + ".txt");
+    if(File.is_open()){
+        while(getline(File, line)){
+            cout << line << endl;
+        }
+    }
+    File.close();
+}
+
 int main(){
     char mov = ' ';
     int heroPos[2] = {0,0};  //pos x,y
     int lifes = 3;
+    char option = ' ';
     char mapWorld[SIZE_LAB] = {'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I',
@@ -81,6 +111,18 @@ int main(){
                         'I','I','I','I','I','I','I','I','I','I'};
 
     cout << "Labyrinth Practical course of C++" << endl;
+    while((option != 'y') || (option != 'n')){
+        cout << "Do you have already an account? (y/n): ";
+        cin >> option;
+    }
+    switch (option){
+        case 'y':
+            selectPlayer();
+            break;
+        case 'n':
+            loginPlayer();
+            break;
+    }
     cout << "posible movements; r (right), l (left), u (up), d (down)" << endl;
     printMap(heroPos, &lifes, mapWorld);
     while(isGameOver == false){
