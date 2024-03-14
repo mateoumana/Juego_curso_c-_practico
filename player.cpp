@@ -5,18 +5,57 @@
 
 using namespace std;
 
-Player::Player(string sName, string sEmail, sring sScore){
+Player::Player(string sName, string sEmail, int sScore){
     Name = sName;
     Email = sEmail;
     Score = sScore;
+    Pos[0] = 0;
+    Pos[1] = 0;
 }
-Player::getName(){
+string Player::getName(){
     return Name;
 }
-Player::getScore(){
+int Player::getScore(){
     return Score;
 }
-Player::getEmail(){
+int getPosX(){
+    return Pos[0];
+}
+int getPosY(){
+    return Pos[1];
+}
+string Player::getEmail(){
     return Email;
+}
+string Player::setName(string sName){
+    Name = sName;
+}
+int Player::setScore(int sScore){
+    Score = sScore;
+}
+string Player::setEmail(string sEmail){
+    Email = sEmail;
+}
+void Player::Move(){
+    char mov = ' ';
+    cout << "Which movement do you like to do?: ";
+    cin >> mov;
+    switch (mov)
+    {
+    case 'd': //down
+        *(Pos + 1) += 1;   //down is up in the array
+        break;
+    case 'r': //right
+        *Pos += 1;
+        break;
+    case 'l': //left
+        *Pos -= 1;
+        break;
+    case 'u': //up
+        *(Pos + 1) -= 1;  //up is down in the array
+        break;
+    default:
+        break;
+    }
 }
 Player::~Player(){}

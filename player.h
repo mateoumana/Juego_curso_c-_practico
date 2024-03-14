@@ -10,12 +10,22 @@ class Player{
         int Score;
         string Name;
         string Email;
+        int Pos[2] = {0,0}; //default
+
     public:
-        Player(string sName, string sEmail, sring sScore);
+        Player(string sName, string sEmail, int sScore);
         ~Player();
-        getName();
-        getScore();
-        getEmail();
+        //Get and Set
+        string getName();
+        int getScore();
+        int getPosX();
+        int getPosY();
+        string getEmail();
+        string setName(string sName);
+        int setScore(int sScore);
+        string setEmail(string sEmail);
+        //Movement
+        void Move();
 };
 
 #endif

@@ -7,8 +7,8 @@
 using namespace std;
 static bool isGameOver = false;
 
-bool CheckGameOver(int *heroPos){
-    if((*(heroPos) >= 10) || (*(heroPos) < 0) || (*(heroPos + 1) >= 10) || (*(heroPos + 1) < 0)){
+bool CheckGameOver(Player *Persona){
+    if((Persona->Pos >= 10) || (Persona->Pos < 0) || (Persona->(Pos + 1) >= 10) || (Persona->(Pos + 1) < 0)){
         cout << "\n\n===================" <<endl;
         cout << "<<<  GAME OVER  >>>" << endl;
         cout << "===================" << endl << endl;
@@ -18,13 +18,11 @@ bool CheckGameOver(int *heroPos){
     }
 }
 
-void printMap(int *heroPos, int *lifes, char *mapWorld){
+void printMap(Player *Persona, char *mapWorld){
     int y = 0;
     int i = 0;
     for(int x = 0 ;x < SIZE_LAB;x++){
-        //cout << "/" << (y == *(heroPos + 1)) << (i == *heroPos) << "/ ";
-        //cout << "/" << i << *heroPos << "/ " << endl;
-        if((y == *(heroPos + 1)) && (i == *heroPos)){
+        if((y == Persona->(Pos + 1)) && (i == Persona->Pos)){
             if(((x + 1) % 10) == 0){
                 cout << "H" << endl;
             }else{
@@ -41,31 +39,7 @@ void printMap(int *heroPos, int *lifes, char *mapWorld){
         }
         i += 1;  
     }    
-    isGameOver = CheckGameOver(heroPos);
-}
-
-void movement(char *mov,int *heroPos, int *lifes, char *mapWorld){
-    switch (*mov)
-    {
-    case 'd': //down
-        *(heroPos + 1) += 1;   //up is down in the array
-        printMap(heroPos, lifes, mapWorld);
-        break;
-    case 'r': //right
-        *heroPos += 1;
-        printMap(heroPos, lifes, mapWorld);
-        break;
-    case 'l': //left
-        *heroPos -= 1;
-        printMap(heroPos, lifes, mapWorld);
-        break;
-    case 'u': //up
-        *(heroPos + 1) -= 1; //down is up in the array
-        printMap(heroPos, lifes, mapWorld);
-        break;
-    default:
-        break;
-    }
+    isGameOver = CheckGameOver(Persona);
 }
 
 void loginPlayer(){  //third line to the score
@@ -85,7 +59,7 @@ void selectPlayer(){
     string namePlayer;
     string line;
     cout << "Introduce your Nick Name: ";
-    cin << namePlayer;
+    cin >> namePlayer;
     ifstream File(namePlayer + ".txt");
     if(File.is_open()){
         while(getline(File, line)){
@@ -96,9 +70,8 @@ void selectPlayer(){
 }
 
 int main(){
-    char mov = ' ';
+
     int heroPos[2] = {0,0};  //pos x,y
-    int lifes = 3;
     char option = ' ';
     char mapWorld[SIZE_LAB] = {'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I',
@@ -111,25 +84,15 @@ int main(){
                         'I','I','I','I','I','I','I','I','I','I',
                         'I','I','I','I','I','I','I','I','I','I'};
 
+    Player Persona1("Mateo", "m@gmail.com",0);
+
     cout << "Labyrinth Practical course of C++" << endl;
-    while((option != 'y') || (option != 'n')){
-        cout << "Do you have already an account? (y/n): ";
-        cin >> option;
-    }
-    switch (option){
-        case 'y':
-            selectPlayer();
-            break;
-        case 'n':
-            loginPlayer();
-            break;
-    }
     cout << "posible movements; r (right), l (left), u (up), d (down)" << endl;
-    printMap(heroPos, &lifes, mapWorld);
+    printMap(&Persona1, mapWorld);
     while(isGameOver == false){
-        cout << "\n>>>Which movement do you wish to do?: " << endl;
-        cin >> mov;
-        movement(&mov,heroPos, &lifes, mapWorld);
+        Persona1.Move();
+        printMap(&Persona1, mapWorld);
     }
+    ~Persona1();
     return 0;
 }
