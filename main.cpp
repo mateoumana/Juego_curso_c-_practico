@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "player.h"
 //size of the labyrinth 10*10=100
 #define SIZE_LAB 100
 using namespace std;
