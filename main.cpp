@@ -8,7 +8,7 @@ using namespace std;
 static bool isGameOver = false;
 
 bool CheckGameOver(Player *Persona){
-    if((Persona->Pos >= 10) || (Persona->Pos < 0) || (Persona->(Pos + 1) >= 10) || (Persona->(Pos + 1) < 0)){
+    if((Persona->getPosX() >= 10) || (Persona->getPosX() < 0) || (Persona->getPosY() >= 10) || (Persona->getPosY() < 0)){
         cout << "\n\n===================" <<endl;
         cout << "<<<  GAME OVER  >>>" << endl;
         cout << "===================" << endl << endl;
@@ -22,7 +22,7 @@ void printMap(Player *Persona, char *mapWorld){
     int y = 0;
     int i = 0;
     for(int x = 0 ;x < SIZE_LAB;x++){
-        if((y == Persona->(Pos + 1)) && (i == Persona->Pos)){
+        if((y == Persona->getPosY()) && (i == Persona->getPosX())){
             if(((x + 1) % 10) == 0){
                 cout << "H" << endl;
             }else{
@@ -45,7 +45,7 @@ void printMap(Player *Persona, char *mapWorld){
 void loginPlayer(){  //third line to the score
     string namePlayer, Email;
     cout << "Introduce your Nick Name: ";
-    cin << namePlayer;
+    cin >> namePlayer;
     cout << "\nIntroduce your Email: ";
     ofstream File(namePlayer + ".txt");
     if(File.is_open()){
@@ -93,6 +93,8 @@ int main(){
         Persona1.Move();
         printMap(&Persona1, mapWorld);
     }
-    ~Persona1();
+    cout << "x: " << Persona1.getPosX() << endl;
+    cout << "y: " << Persona1.getPosY() << endl;
+    //Persona1.~Persona();
     return 0;
 }

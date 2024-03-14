@@ -1,5 +1,5 @@
 #ifndef PLAYER.H
-#define PLAYER:H
+#define PLAYER.H
 
 using namespace std;
 

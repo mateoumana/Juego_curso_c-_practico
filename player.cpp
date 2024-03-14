@@ -18,10 +18,10 @@ string Player::getName(){
 int Player::getScore(){
     return Score;
 }
-int getPosX(){
+int Player::getPosX(){
     return Pos[0];
 }
-int getPosY(){
+int Player::getPosY(){
     return Pos[1];
 }
 string Player::getEmail(){
