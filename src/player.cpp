@@ -24,6 +24,9 @@ int Player::getPosX(){
 int Player::getPosY(){
     return Pos[1];
 }
+bool Player::getGameOver(){
+    return isGameOver;
+}
 string Player::getEmail(){
     return Email;
 }
@@ -56,6 +59,17 @@ void Player::Move(){
         break;
     default:
         break;
+    }
+}
+bool Player::CheckGameOver(Player *Persona){
+    if((Persona->getPosX() >= 10) || (Persona->getPosX() < 0) || (Persona->getPosY() >= 10) || (Persona->getPosY() < 0)){
+        cout << "\n\nYour Score was:" << Score << endl;
+        cout << "\n\n===================" <<endl;
+        cout << "<<<  GAME OVER  >>>" << endl;
+        cout << "===================" << endl << endl;
+        isGameOver true;
+    }else{
+        isGameOver false;
     }
 }
 Player::~Player(){}

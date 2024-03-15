@@ -5,18 +5,6 @@
 //size of the labyrinth 10*10=100
 #define SIZE_LAB 100
 using namespace std;
-static bool isGameOver = false;
-
-bool CheckGameOver(Player *Persona){
-    if((Persona->getPosX() >= 10) || (Persona->getPosX() < 0) || (Persona->getPosY() >= 10) || (Persona->getPosY() < 0)){
-        cout << "\n\n===================" <<endl;
-        cout << "<<<  GAME OVER  >>>" << endl;
-        cout << "===================" << endl << endl;
-        return true;
-    }else{
-        return false;
-    }
-}
 
 void printMap(Player *Persona, char *mapWorld){
     int y = 0;
@@ -89,12 +77,10 @@ int main(){
     cout << "Labyrinth Practical course of C++" << endl;
     cout << "posible movements; r (right), l (left), u (up), d (down)" << endl;
     printMap(&Persona1, mapWorld);
-    while(isGameOver == false){
+    while(Persona1.getGameOver() == false){
         Persona1.Move();
         printMap(&Persona1, mapWorld);
     }
-    cout << "x: " << Persona1.getPosX() << endl;
-    cout << "y: " << Persona1.getPosY() << endl;
     //Persona1.~Persona();
     return 0;
 }
