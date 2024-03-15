@@ -61,8 +61,8 @@ void Player::Move(){
         break;
     }
 }
-bool Player::CheckGameOver(Player *Persona){
-    if((Persona->getPosX() >= 10) || (Persona->getPosX() < 0) || (Persona->getPosY() >= 10) || (Persona->getPosY() < 0)){
+bool Player::CheckGameOver(){
+    if((Pos[0] >= 10) || (Pos[0] < 0) || (Pos[1] >= 10) || (Pos[1] < 0)){
         cout << "\n\nYour Score was:" << Score << endl;
         cout << "\n\n===================" <<endl;
         cout << "<<<  GAME OVER  >>>" << endl;

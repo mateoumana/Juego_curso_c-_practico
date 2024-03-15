@@ -27,7 +27,7 @@ void printMap(Player *Persona, char *mapWorld){
         }
         i += 1;  
     }    
-    isGameOver = CheckGameOver(Persona);
+    Persona->CheckGameOver();
 }
 
 void loginPlayer(){  //third line to the score

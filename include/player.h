@@ -28,7 +28,7 @@ class Player{
         string setEmail(string sEmail);
         //Movement
         void Move();
-        bool CheckGameOver(Player *Persona);
+        bool CheckGameOver();
 };
 
 #endif
