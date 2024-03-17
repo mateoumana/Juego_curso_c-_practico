@@ -1,12 +1,12 @@
 O-------------O
-|             |
-|             |
-|             |
-|             |
-|             |
-|             |
-|             |
-|             |
-|             |
-|             |
+|h|hhhhhhhhhhh|
+|h|h|hhhhhhhhh|
+|ho-oh|hhhhhhh|
+|hhhhh|hhhhhhh|
+|-----ohhhhhhh|
+|hhhhhhhhhhhhh|
+|hhhhhhhhhhhhh|
+|hhhhhhhhhhhhh|
+|hhhhhhhhhhhhh|
+|hhhhhhhhhhhhh|
 O-------------O

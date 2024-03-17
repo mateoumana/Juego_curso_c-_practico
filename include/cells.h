@@ -1,5 +1,5 @@
-#ifndef CELLS.H
-#define CELLS:H
+#ifndef CELLS_H
+#define CELLS_H
 
 class Cells{
     private:
@@ -11,7 +11,8 @@ class Cells{
         Cells();
         ~Cells();
         //Get and Set
-        void getIndex(); //Leer el index del mapa desde un archivo txt
+        int getCell(); //Leer el index del mapa desde un archivo txt
+        void setCell(char cell);
 };
 
 #endif

@@ -5,5 +5,15 @@
 
 using namespace std;
 
-Cells::Cells();
-Cells::~Cells();
+Cells::Cells(){
+    index = 0;
+}
+int Cells::getCell(){
+    return index;
+}
+void Cells::setCell(char cell){
+    index = cell;
+}
+Cells::~Cells(){
+
+}
