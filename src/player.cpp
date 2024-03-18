@@ -33,52 +33,60 @@ string Player::getEmail(){
 }
 void Player::getDataPlayer(){
     string line;
-    cout << "Introduce your name, please: ";
-    cin >> Name;
-    ifstream File(Name + ".txt");
-    while(Score == -1){
+    do{
+        cout << "Introduce your name, please: ";
+        cin >> Name;
+        ifstream File("scores/" + Name + ".txt");
         if(File.is_open()){
             while(getline(File, line)){
                 if(line.find("Email:") != string::npos){
-                    Email = line.substr(line.find("Email:") + 6); //sizeof("Email:") = 6
+                    Email = line.substr(line.find("Email: ") + 7); //sizeof("Email: ") = 7
                 }
                 if(line.find("Score:") != string::npos){
-                    Score = stod(line.substr(line.find("Score:") + 6)); //sizeof("Score:") = 6
+                    Score = stod(line.substr(line.find("Score: ") + 7)); //sizeof("Score: ") = 7
                 }
                 if(line.find("Name:") != string::npos){
-                    Name = line.substr(line.find("Name:") + 5); //sizeof("Name:") = 5
+                    Name = line.substr(line.find("Name: ") + 6); //sizeof("Name: ") = 6
                 }
             }
             File.close();
         }else{
             cout << "Player not founded. Try again." << endl;
         }
-    }
+    }while(Score == -1);
 }
 void Player::setName(){
     cout << "Introduce your Name, please: ";
     cin >> Name;
     ofstream File;
-    File.open(Name + ".txt",ios::out | ios::app); //out es para crear, app para añadir
+    File.open("scores/" + Name + ".txt",ios::out | ios::app); //out es para crear, app para añadir
     if(File.is_open()){
         File << "Name: " + Name << endl;
     }
     File.close();
 }
 void Player::setScore(time_t *t2, time_t *t1){
-    Score = difftime(*t2, *t1);
-    ofstream File;
-    File.open(Name + ".txt",ios::out | ios::app);
-    if(File.is_open()){
-        File << "Score: " + to_string(Score) << endl;
+    if(Score > difftime(*t2, *t1)){  //the smaller, the better the marker
+        cout << "You have beat your Score!!" << endl;
+        Score = difftime(*t2, *t1);
+        ofstream File;
+        File.open("scores/" + Name + ".txt",ios::out); //I have not to add, I have to rewrite to correct the Score
+        if(File.is_open()){
+            File << "Name: " + Name << endl;
+            File << "Email: " + Email << endl;
+            File << "Score: " + to_string(Score) << endl;
+        }
+        File.close();
+    }else{
+        cout << "You didn't beat your score!!" << endl;
+        cout << "\nThis time was: " + to_string((int)difftime(*t2, *t1)) << endl;
     }
-    File.close();
 }
 void Player::setEmail(){
     cout << "Introduce your Email, please: ";
     cin >> Email;
     ofstream File;
-    File.open(Name + ".txt",ios::out | ios::app);
+    File.open("scores/" + Name + ".txt",ios::out | ios::app);
     if(File.is_open()){
         File << "Email: " + Email << endl;
     }
@@ -86,7 +94,7 @@ void Player::setEmail(){
 }
 void Player::Move(){
     char mov = ' ';
-    cout << "Which movement do you like to do?: ";
+    cout << "\nWhich movement do you like to do?: ";
     cin >> mov;
     switch (mov) //wasd, like in normal games
     {
@@ -110,7 +118,7 @@ void Player::CheckGameOver(){
     if((Pos[0] >= 10) || (Pos[0] < 0) || (Pos[1] >= 10) || (Pos[1] < 0)){
         cout << "\n\n===================" <<endl;
         cout << "<<<  GAME OVER  >>>" << endl;
-        cout << "===================" << endl;
+        cout << "===================\n\n" << endl;
         isGameOver = true;
     }else{
         isGameOver = false;

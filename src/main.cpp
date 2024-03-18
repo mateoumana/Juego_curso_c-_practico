@@ -33,33 +33,6 @@ void printMap(Player *Persona, char *mapWorld){
     //Persona->CheckGameOver();
 }
 
-void loginPlayer(){  //third line to the score
-    string namePlayer, Email;
-    cout << "Introduce your Nick Name: ";
-    cin >> namePlayer;
-    cout << "\nIntroduce your Email: ";
-    ofstream File(namePlayer + ".txt");
-    if(File.is_open()){
-        File << namePlayer << endl;
-        File << Email << endl;
-    }
-    File.close();
-}
-
-void selectPlayer(){
-    string namePlayer;
-    string line;
-    cout << "Introduce your Nick Name: ";
-    cin >> namePlayer;
-    ifstream File(namePlayer + ".txt");
-    if(File.is_open()){
-        while(getline(File, line)){
-            cout << line << endl;
-        }
-    }
-    File.close();
-}
-
 int main(){
     time_t t1, t2;
     int heroPos[2] = {0,0};  //pos x,y
@@ -109,7 +82,7 @@ int main(){
     }
     time(&t2);
     Persona1.setScore(&t2, &t1);
-    cout << "\nYour Score was:" << Persona1.getScore() << endl;
+    cout << "\nYour best Score is: " << Persona1.getScore() << " seconds" << endl;
     //Persona1.~Persona();
     return 0;
 }
