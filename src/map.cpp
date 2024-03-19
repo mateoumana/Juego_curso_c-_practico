@@ -8,42 +8,30 @@ using namespace std;
 Map::Map(string nameMap){
     int j = 0;
     string line;
-    ifstream File(nameMap + ".txt");
+    ifstream File("mapas/" + nameMap);
     if(File.is_open()){
         while(getline(File, line)){
-            for(int i = 0 ;i < sizeof(line); i++){
-                cells[j][i].setCell(line[i]);
+            for(int i = 0 ;i < COLUMNS; i++){
+                cell[j][i].setCell(line[i]);
             }
             j += 1;
         }
     }
 }
-void DrawMap(){
+void Map::DrawMap(Player *Persona){
     int y = 0;
     int i = 0;
-    /*for(int i = 0 ;i < SIZE_LAB; i++){
-        for(int j = 0 ;j < SIZE_LAB; j++){
-            
-        }
-    }*/
-    /*for(int x = 0 ;x < SIZE_LAB;x++){
-        if((y == Persona->getPosY()) && (i == Persona->getPosX())){
-            if(((x + 1) % 10) == 0){
-                cout << "H" << endl;
-            }else{
+    for(int i = 0 ;i < ROWS; i++){
+        for(int j = 0 ;j < COLUMNS; j++){
+            if((i == Persona->getPosY()) && (j == Persona->getPosX())){
                 cout << "H";
-            }
-        }else{
-            if(((x + 1) % 10) == 0){
-                i = -1;
-                cout << *(mapWorld + x) << endl;
-                y += 1;
+                Persona->CheckGameOver(cell[i][j].getCell());
             }else{
-                cout << *(mapWorld + x);
+                cout << cell[i][j].getCell();
             }
         }
-        i += 1;  
-    }*/
+        cout << endl;
+    }
 }
 Map::~Map(){
 

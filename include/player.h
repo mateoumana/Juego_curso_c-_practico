@@ -1,6 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+
+#define ROWS 12
+#define COLUMNS 15
 using namespace std;//without this, string doesn't work
 
 class Player{
@@ -10,11 +13,12 @@ class Player{
         double Score;
         string Name = " ";
         string Email = " ";
-        int Pos[2] = {0,0}; //default
+        int Pos[2] = {1,1}; //default
         bool isGameOver = false;
 
     public:
         Player(string sName, string sEmail);
+        Player();
         ~Player();
         //Get and Set
         string getName();
@@ -29,7 +33,7 @@ class Player{
         void setEmail();
         //Movement
         void Move();
-        void CheckGameOver();
+        void CheckGameOver(char cell);
 };
 
 #endif

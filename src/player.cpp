@@ -10,8 +10,15 @@ Player::Player(string sName, string sEmail){
     Name = sName;
     Email = sEmail;
     Score = -1;
-    Pos[0] = 0;
-    Pos[1] = 0;
+    Pos[0] = 1;
+    Pos[1] = 1;
+}
+Player::Player(){
+    Name = " ";
+    Email = " ";
+    Score = -1;
+    Pos[0] = 1;
+    Pos[1] = 1;
 }
 string Player::getName(){
     return Name;
@@ -114,11 +121,9 @@ void Player::Move(){
         break;
     }
 }
-void Player::CheckGameOver(){
-    if((Pos[0] >= 10) || (Pos[0] < 0) || (Pos[1] >= 10) || (Pos[1] < 0)){
-        cout << "\n\n===================" <<endl;
-        cout << "<<<  GAME OVER  >>>" << endl;
-        cout << "===================\n\n" << endl;
+void Player::CheckGameOver(char cell){
+    //if((Pos[0] > (COLUMNS - 1)) || (Pos[0] <= 0) || (Pos[1] >= (ROWS - 1)) || (Pos[1] <= 0)){
+    if(cell == '#'){
         isGameOver = true;
     }else{
         isGameOver = false;

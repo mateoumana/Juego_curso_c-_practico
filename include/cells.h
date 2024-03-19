@@ -11,7 +11,7 @@ class Cells{
         Cells();
         ~Cells();
         //Get and Set
-        int getCell(); //Leer el index del mapa desde un archivo txt
+        char getCell(); //Leer el index del mapa desde un archivo txt
         void setCell(char cell);
 };
 

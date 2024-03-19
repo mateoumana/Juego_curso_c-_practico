@@ -6,9 +6,9 @@
 using namespace std;
 
 Cells::Cells(){
-    index = 0;
+    index = '0';
 }
-int Cells::getCell(){
+char Cells::getCell(){
     return index;
 }
 void Cells::setCell(char cell){
