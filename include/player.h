@@ -14,11 +14,12 @@ class Player{
         string Name = " ";
         string Email = " ";
         int Pos[2] = {1,1}; //default
+        int LastPos[2] = {1,1};
         bool isGameOver = false;
 
     public:
-        Player(string sName, string sEmail);
         Player();
+        Player(string sName, string sEmail);
         ~Player();
         //Get and Set
         string getName();

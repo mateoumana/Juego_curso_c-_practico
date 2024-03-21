@@ -14,13 +14,13 @@ int main(){
     int heroPos[2] = {0,0};  //pos x,y
     char option = ' ';
 
-    Player Persona1();
+    Player Persona1; //without () to use the default constructor
     Map mapa("mapaLevel1.txt");
-
-    cout << "Labyrinth of Practical course of C++" << endl;
+    mapa.DrawIntro("IntroFile.txt");
+    cout << "\n\nLabyrinth of Practical course of C++" << endl;
     cout << "Posible movements: d (right), a (left), w (up), s (down)" << endl;
-    cout << "                  [ w ]       " << endl;
-    cout << "            [ a ] [ s ] [ d ] " << endl << endl;
+    cout << "||                  [ w ]                  ||" << endl;
+    cout << "||            [ a ] [ s ] [ d ]            ||" << endl << endl;
     cout << "Do you have already an account?(y/n): ";
     cin >> option;
     

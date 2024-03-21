@@ -6,16 +6,16 @@
 
 using namespace std;
 
-Player::Player(string sName, string sEmail){
-    Name = sName;
-    Email = sEmail;
+Player::Player(){
+    Name = " ";
+    Email = " ";
     Score = -1;
     Pos[0] = 1;
     Pos[1] = 1;
 }
-Player::Player(){
-    Name = " ";
-    Email = " ";
+Player::Player(string sName, string sEmail){
+    Name = sName;
+    Email = sEmail;
     Score = -1;
     Pos[0] = 1;
     Pos[1] = 1;
@@ -86,7 +86,7 @@ void Player::setScore(time_t *t2, time_t *t1){
         File.close();
     }else{
         cout << "You didn't beat your score!!" << endl;
-        cout << "\nThis time was: " + to_string((int)difftime(*t2, *t1)) << endl;
+        cout << "\nThis time was: " + to_string((int)difftime(*t2, *t1)) + " seconds" << endl;
     }
 }
 void Player::setEmail(){
@@ -103,6 +103,8 @@ void Player::Move(){
     char mov = ' ';
     cout << "\nWhich movement do you like to do?: ";
     cin >> mov;
+    *(LastPos + 1) = *(Pos + 1);
+    *LastPos = *Pos;
     switch (mov) //wasd, like in normal games
     {
     case 's': //down
@@ -124,6 +126,9 @@ void Player::Move(){
 void Player::CheckGameOver(char cell){
     //if((Pos[0] > (COLUMNS - 1)) || (Pos[0] <= 0) || (Pos[1] >= (ROWS - 1)) || (Pos[1] <= 0)){
     if(cell == '#'){
+        *Pos = *LastPos;
+        *(Pos + 1) = *(LastPos + 1);
+    }else if(cell == 'X'){
         isGameOver = true;
     }else{
         isGameOver = false;

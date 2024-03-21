@@ -15,6 +15,7 @@ class Map{
         ~Map();
         //Get and Set
         void DrawMap(Player *Persona);
+        void DrawIntro(string nameIntro);
 };
 
 #endif
