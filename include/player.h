@@ -2,8 +2,8 @@
 #define PLAYER_H
 
 
-#define ROWS 12
-#define COLUMNS 15
+#define ROWS 23
+#define COLUMNS 38
 using namespace std;//without this, string doesn't work
 
 class Player{
