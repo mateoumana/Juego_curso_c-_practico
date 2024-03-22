@@ -123,14 +123,24 @@ void Player::Move(){
         break;
     }
 }
-void Player::CheckGameOver(char cell){
-    //if((Pos[0] > (COLUMNS - 1)) || (Pos[0] <= 0) || (Pos[1] >= (ROWS - 1)) || (Pos[1] <= 0)){
+void Player::CheckGameOver(char cell, string *sNameMap,bool *sChangeMap){
     if(cell == '#'){
         *Pos = *LastPos;
         *(Pos + 1) = *(LastPos + 1);
     }else if(cell == 'X'){
-        isGameOver = true;
+        if(*sNameMap == "mapaLevel3.txt"){
+            isGameOver = true;
+        }else if(*sNameMap == "mapaLevel1.txt"){
+            *sChangeMap = true;
+            *sNameMap = "mapaLevel2.txt";
+        }else if(*sNameMap == "mapaLevel2.txt"){
+            *sChangeMap = true;
+            *sNameMap = "mapaLevel3.txt";
+        }
+        *Pos = 1;
+        *(Pos + 1) = 1;
     }else{
+        *sChangeMap = false;
         isGameOver = false;
     }
 }

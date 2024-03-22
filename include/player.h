@@ -34,7 +34,7 @@ class Player{
         void setEmail();
         //Movement
         void Move();
-        void CheckGameOver(char cell);
+        void CheckGameOver(char cell, string *sNameMap,bool *sChangeMap);
 };
 
 #endif

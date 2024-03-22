@@ -10,10 +10,15 @@ class Map{
 
     protected:
         Cells cell[ROWS][COLUMNS];
+        string nameMap;
+        bool changeMap = false;
     public:
-        Map(string nameMap);
+        Map(string sNameMap);
         ~Map();
         //Get and Set
+        string getName();
+        bool getChange();
+        void otherMap(string sMap);
         void DrawMap(Player *Persona);
         void DrawIntro(string nameIntro);
 };

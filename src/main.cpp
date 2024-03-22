@@ -18,6 +18,7 @@ int main(){
     Map mapa("mapaLevel1.txt");
     mapa.DrawIntro("IntroFile.txt");
     cout << "\n\nLabyrinth of Practical course of C++" << endl;
+    cout << "\nThere are three diferent levels" << endl;
     cout << "Posible movements: d (right), a (left), w (up), s (down)" << endl;
     cout << "||                  [ w ]                  ||" << endl;
     cout << "||            [ a ] [ s ] [ d ]            ||" << endl << endl;
@@ -38,12 +39,26 @@ int main(){
         Persona1.setEmail();
         break;
     }
-
-    mapa.DrawMap(&Persona1);
+    cout << "\n\n===================" <<endl;
+    cout << "<<<   LEVEL 1   >>>" << endl;
+    cout << "===================\n\n" << endl;
     time(&t1);
     while(Persona1.getGameOver() == false){
-        Persona1.Move();
         mapa.DrawMap(&Persona1);
+        if((mapa.getName() == "mapaLevel2.txt") && mapa.getChange()){
+            mapa.otherMap("mapaLevel2.txt");
+            cout << "\n\n===================" <<endl;
+            cout << "<<<   LEVEL 2   >>>" << endl;
+            cout << "===================\n\n" << endl;
+            mapa.DrawMap(&Persona1);
+        }else if((mapa.getName() == "mapaLevel3.txt") && mapa.getChange()){
+            mapa.otherMap("mapaLevel3.txt");
+            cout << "\n\n===================" <<endl;
+            cout << "<<<   LEVEL 3   >>>" << endl;
+            cout << "===================\n\n" << endl;
+            mapa.DrawMap(&Persona1);
+        }
+        Persona1.Move();
     }
     time(&t2);
     cout << "\n\n===================" <<endl;
