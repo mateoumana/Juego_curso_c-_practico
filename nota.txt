@@ -1,0 +1,18 @@
+codigo para compilar y generar ejecutable con cmake desde 0 por si normal no corre:
+
+tener la estuctura:
+-CMakeLists.txt
+-build
+-src
+--codigos fuente
+-include
+--codigos de cabecera
+-lib
+
+en el mismo nivel de CMakeLists.txt ejecutar
+
+cmake . -G "MinGW Makefiles"
+
+luego ejecutar en la misma raiz
+
+cmake --build .
